@@ -17,11 +17,9 @@
 		let resultd_stringify = JSON.stringify(resultd)
 		let jsonparse = JSON.parse(resultd_stringify)
 		let jsonparse2 = JSON.parse(jsonparse)
-		console.log(333,jsonparse2)
-		
-	
+
 	let songsArr =  jsonparse2.data.songs
-	let pathArr = []
+	let pathAllString = ""
 	for(let s of songsArr){
 		let p = s.path
 		let pArr = p.split('/');
@@ -30,14 +28,14 @@
 			if(sub_p!= ""){
 				let tmp = `/'${sub_p}'`
 				newPath+=tmp
+				
 			}
 		}
 		newPath +="\n"
-		pathArr.push(newPath)
+		pathAllString+=newPath
 	}
 	document.getElementById('counter').value = songsArr.length
-	document.getElementById('example').value = pathArr
-	document.getElementById('example').value =document.getElementById('example').value.replace(/,/g,'')
+	document.getElementById('example').value = pathAllString
 	}
 	
 	
