@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+
+  <textarea  style="width:45%;height:900px;float:left"  id="src">
+  </textarea >
+  <button onclick="transfer()">transfer</button><input style="width:40px" id="counter"></input>
+  <textarea  style="width:45%;height:900px;float:right"  id="example"></textarea >
+  <script>
+	function transfer(){
+		let resultd = document.getElementById("src").value
+		let resultd_stringify = JSON.stringify(resultd)
+		let jsonparse = JSON.parse(resultd_stringify)
+		let jsonparse2 = JSON.parse(jsonparse)
+		console.log(333,jsonparse2)
+		
+	
+	let songsArr =  jsonparse2.data.songs
+	let pathArr = []
+	for(let s of songsArr){
+		let p = s.path
+		let pArr = p.split('/');
+		let newPath = "rm /volume4";
+		for(let sub_p of pArr){
+			if(sub_p!= ""){
+				let tmp = `/'${sub_p}'`
+				newPath+=tmp
+			}
+		}
+		newPath +="\n"
+		pathArr.push(newPath)
+	}
+	document.getElementById('counter').value = songsArr.length
+	document.getElementById('example').value = pathArr
+	document.getElementById('example').value =document.getElementById('example').value.replace(/,/g,'')
+	}
+	
+	
+
+  </script>
+</body>
+
+</html>
